@@ -1,6 +1,6 @@
 {
   "_comment": "===== MODEL CONFIGURATION =====",
-  "model_dir": "models/a_very_robust_model",
+  "model_dir": "models/adv_trained",
 
   "_comment": "===== DATASET CONFIGURATION =====",
   "data_path": "cifar10_data",
@@ -18,15 +18,15 @@
   "momentum": 0.9,
 
   "_comment": "===== EVAL CONFIGURATION =====",
-  "num_eval_examples": 10000,
+  "num_eval_examples": 1000,
   "eval_batch_size": 100,
   "eval_on_cpu": false,
 
   "_comment": "=====ADVERSARIAL EXAMPLES CONFIGURATION=====",
-  "epsilon": 8.0,
-  "num_steps": 10,
+  "epsilon": 80.0,
+  "num_steps": 100,
   "step_size": 2.0,
   "random_start": true,
   "loss_func": "xent",
-  "store_adv_path": "attack.npy"
+  "store_adv_path": "attack_adv_trained.npy"
 }

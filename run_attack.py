@@ -29,13 +29,13 @@ def run_attack(checkpoint, x_adv, epsilon):
 
   saver = tf.train.Saver()
 
-  num_eval_examples = 10000
+  num_eval_examples = 1000
   eval_batch_size = 100
 
   num_batches = int(math.ceil(num_eval_examples / eval_batch_size))
   total_corr = 0
 
-  x_nat = cifar.eval_data.xs
+  x_nat = cifar.eval_data.xs[:num_eval_examples, :]
   l_inf = np.amax(np.abs(x_nat - x_adv))
 
   if l_inf > epsilon + 0.0001:
@@ -85,8 +85,8 @@ if __name__ == '__main__':
 
   if checkpoint is None:
     print('No checkpoint found')
-  elif x_adv.shape != (10000, 32, 32, 3):
-    print('Invalid shape: expected (10000, 32, 32, 3), found {}'.format(x_adv.shape))
+  #  elif x_adv.shape != (10000, 32, 32, 3):
+  #    print('Invalid shape: expected (10000, 32, 32, 3), found {}'.format(x_adv.shape))
   elif np.amax(x_adv) > 255.0001 or np.amin(x_adv) < -0.0001:
     print('Invalid pixel range. Expected [0, 255], found [{}, {}]'.format(
                                                               np.amin(x_adv),
